@@ -2,6 +2,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const cors = require('cors');
 
 const postsRoute = require('./routes/posts')
 
@@ -10,7 +11,8 @@ require("dotenv/config")
 // create express app
 const app = express();
 // Everytime a route is called, this bodyParser runs
-app.use(bodyParser.json())
+// app.use(bodyParser.json())
+app.use(cors())
 
 //Everytime I access /prova it logs the message (example): it is usually used for authentication everytime you access a page
 // app.use('/prova', () => {
@@ -21,7 +23,7 @@ app.get('/', (req, res) => {
     res.send("ciao ciao")
 })
 
-app.use('/posts', postsRoute)
+app.use('/api/posts', postsRoute)
 // It does not exist, but it could be another route
 // app.use('/users', userRoute)
 
